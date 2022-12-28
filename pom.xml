@@ -12,5 +12,6 @@
     <modules>
         <module>captchdemo</module>
         <module>beaUtilscopy</module>
+        <module>activiti_demo</module>
     </modules>
 </project>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="sale-flow" name="销售流程" isExecutable="true">
+    <documentation>saas销售流程</documentation>
+    <startEvent id="START" name="开始"/>
+    <userTask id="APPLY" name="提交申请" activiti:candidateGroups="${PROCESS_LEVE_USER_APPLY}"/>
+    <sequenceFlow id="sid-79104E7F-A407-4E09-89F3-1B30663EFCAF" sourceRef="START" targetRef="APPLY"/>
+    <userTask id="CHUSHENG" name="HR初审" activiti:candidateGroups="${PROCESS_LEVE_CHUSHENG_APPLY}"/>
+    <sequenceFlow id="sid-66A095AF-42F8-43C8-B8DC-148AC30E94CE" sourceRef="APPLY" targetRef="CHUSHENG"/>
+    <userTask id="FUSHEN" name="复审" activiti:candidateGroups="${PROCESS_LEVE_FU_APPLY}"/>
+    <sequenceFlow id="sid-6BF6D763-0315-40AA-A18E-CA4BC45DAF1C" sourceRef="CHUSHENG" targetRef="FUSHEN"/>
+    <exclusiveGateway id="sid-F16FEE94-7898-466C-AFA7-3A47A1F29037"/>
+    <sequenceFlow id="sid-028AAED6-79D8-4056-B8CD-27234F84F5CE" sourceRef="FUSHEN" targetRef="sid-F16FEE94-7898-466C-AFA7-3A47A1F29037"/>
+    <userTask id="LEADER" name="领导审核" activiti:candidateGroups="${PROCESS_LEVE_LEADER_APPLY}"/>
+    <sequenceFlow id="sid-3B337BA0-0233-4C01-BCA4-E1ACE1AB65CA" sourceRef="sid-F16FEE94-7898-466C-AFA7-3A47A1F29037" targetRef="LEADER"/>
+    <endEvent id="END" name="结束"/>
+    <sequenceFlow id="sid-F75E0FB8-BADA-449A-A15C-CBF5B79C1EDC" sourceRef="sid-F16FEE94-7898-466C-AFA7-3A47A1F29037" targetRef="END"/>
+    <sequenceFlow id="sid-C8481480-3870-4ACF-9864-EB7A80680193" sourceRef="LEADER" targetRef="END"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_sale-flow">
+    <bpmndi:BPMNPlane bpmnElement="sale-flow" id="BPMNPlane_sale-flow">
+      <bpmndi:BPMNShape bpmnElement="START" id="BPMNShape_START">
+        <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="163.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="APPLY" id="BPMNShape_APPLY">
+        <omgdc:Bounds height="80.0" width="100.0" x="175.0" y="135.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="CHUSHENG" id="BPMNShape_CHUSHENG">
+        <omgdc:Bounds height="80.0" width="100.0" x="315.0" y="135.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="FUSHEN" id="BPMNShape_FUSHEN">
+        <omgdc:Bounds height="80.0" width="100.0" x="465.0" y="135.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-F16FEE94-7898-466C-AFA7-3A47A1F29037" id="BPMNShape_sid-F16FEE94-7898-466C-AFA7-3A47A1F29037">
+        <omgdc:Bounds height="40.0" width="40.0" x="610.0" y="155.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="LEADER" id="BPMNShape_LEADER">
+        <omgdc:Bounds height="80.0" width="100.0" x="705.0" y="15.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="END" id="BPMNShape_END">
+        <omgdc:Bounds height="28.0" width="28.0" x="855.0" y="161.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-3B337BA0-0233-4C01-BCA4-E1ACE1AB65CA" id="BPMNEdge_sid-3B337BA0-0233-4C01-BCA4-E1ACE1AB65CA">
+        <omgdi:waypoint x="630.5" y="155.5"/>
+        <omgdi:waypoint x="630.5" y="125.0"/>
+        <omgdi:waypoint x="755.0" y="125.0"/>
+        <omgdi:waypoint x="755.0" y="95.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-C8481480-3870-4ACF-9864-EB7A80680193" id="BPMNEdge_sid-C8481480-3870-4ACF-9864-EB7A80680193">
+        <omgdi:waypoint x="793.0" y="95.0"/>
+        <omgdi:waypoint x="859.3575075331943" y="164.8500079296782"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-66A095AF-42F8-43C8-B8DC-148AC30E94CE" id="BPMNEdge_sid-66A095AF-42F8-43C8-B8DC-148AC30E94CE">
+        <omgdi:waypoint x="275.0" y="175.0"/>
+        <omgdi:waypoint x="315.0" y="175.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-79104E7F-A407-4E09-89F3-1B30663EFCAF" id="BPMNEdge_sid-79104E7F-A407-4E09-89F3-1B30663EFCAF">
+        <omgdi:waypoint x="130.0" y="178.0"/>
+        <omgdi:waypoint x="152.5" y="178.0"/>
+        <omgdi:waypoint x="152.5" y="175.0"/>
+        <omgdi:waypoint x="175.0" y="175.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-028AAED6-79D8-4056-B8CD-27234F84F5CE" id="BPMNEdge_sid-028AAED6-79D8-4056-B8CD-27234F84F5CE">
+        <omgdi:waypoint x="565.0" y="175.2164502164502"/>
+        <omgdi:waypoint x="610.4130434782609" y="175.41304347826087"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-6BF6D763-0315-40AA-A18E-CA4BC45DAF1C" id="BPMNEdge_sid-6BF6D763-0315-40AA-A18E-CA4BC45DAF1C">
+        <omgdi:waypoint x="415.0" y="175.0"/>
+        <omgdi:waypoint x="420.0" y="175.00002"/>
+        <omgdi:waypoint x="465.0" y="175.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-F75E0FB8-BADA-449A-A15C-CBF5B79C1EDC" id="BPMNEdge_sid-F75E0FB8-BADA-449A-A15C-CBF5B79C1EDC">
+        <omgdi:waypoint x="649.5399159663865" y="175.46008403361344"/>
+        <omgdi:waypoint x="855.0000307652076" y="175.02935004032452"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
