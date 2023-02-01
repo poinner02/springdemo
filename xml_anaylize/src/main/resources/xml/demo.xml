@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<root>
+	<point y="0" x="0" name="A" />
+	<point y="200" x="100" name="B"/>
+	<point y="-50" x="300" name="C"/>
+	<point y="-100" x="100" name="D"/>
+	<path startpoint="A" endpoint="B" name="p1"/>
+	<path startpoint="A" endpoint="C" name="p2"/>
+	<path startpoint="B" endpoint="C" name="p3"/>
+	<path startpoint="B" endpoint="D" name="p4"/>
+	<path startpoint="C" endpoint="B" name="p5"/>
+	<path startpoint="C" endpoint="D" name="p6"/>
+</root>
